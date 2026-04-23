@@ -1,8 +1,5 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html class="no-js" lang="en">
-
-
 
 <head>
     <!--====== USEFULL META ======-->
@@ -34,10 +31,112 @@
     <link href="css/responsive.css" rel="stylesheet">
 
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    <style>
+        /* Additional inline styles to ensure gallery images display correctly */
+        .gallery-img {
+            position: relative;
+            overflow: hidden;
+            background: #e8dcc8;
+            height: 250px;
+            width: 100%;
+        }
+        .gallery-img img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block !important;
+            transition: transform 0.4s ease;
+        }
+        .gallery-img:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+        .gallery-img:hover .gallery-overlay {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .gallery-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #d0963e;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        .gallery-icon:hover {
+            background: #fff;
+            color: #d0963e;
+            transform: rotate(90deg);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            transition: bottom 0.3s ease;
+            z-index: 10;
+        }
+        .gallery-img:hover .gallery-caption {
+            bottom: 0;
+        }
+        .gallery-caption h5 {
+            font-size: 14px;
+            margin-bottom: 3px;
+            color: #fff;
+        }
+        .gallery-caption p {
+            font-size: 11px;
+            margin-bottom: 0;
+            color: #d0963e;
+        }
+        .gallery-filter-menu ul {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0;
+        }
+        .gallery-filter-menu ul li {
+            display: inline-block;
+            border: 1px solid #1e1e1f;
+            padding: 5px 25px;
+            margin: 0 3px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .gallery-filter-menu ul li:hover,
+        .gallery-filter-menu ul li.active {
+            background: #1e1e1f;
+            color: #fff;
+        }
+        .gallery-grid .mix {
+            display: none;
+        }
+        .img-placeholder {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="home-three">
-
 
     <!--- PRELOADER -->
     <div class="preeloader">
@@ -56,18 +155,15 @@
                         <div class="col-md-7 col-lg-6 col-sm-8">
                             <div class="call-to-action">
                                 <p><i class="fa fa-envelope-o"></i>Email: <a href="#">cafeomeili@gmail.com</a></p>
-                                <p><i class="fa fa-phone"></i>Telephone: <a href="#">
-077 172 0003</a></p>
+                                <p><i class="fa fa-phone"></i>Telephone: <a href="#">077 172 0003</a></p>
                             </div>
                         </div>
                         <div class="col-md-5 col-lg-6 col-sm-4">
-                            
                             <div class="top-social-bookmark">
                                 <ul>
                                     <li><a href="https://www.facebook.com/profile.php?id=61572546878481"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="https://wa.me/94771720003"><i class="fa fa-whatsapp"></i></a></li>
                                     <li><a href="https://www.instagram.com/cafeomeili/"><i class="fa fa-instagram"></i></a></li>
-                                    
                                 </ul>
                             </div>
                         </div>
@@ -101,12 +197,11 @@
                                 </div>
                             </div>
                             <ul id="nav" class="nav navbar-nav cl-effect-11">
-                                <li class="active"><a class="at-drop-down" href="index.html">Home <i class="hidden-md hidden-lg fa fa-angle-down"></i></a>
-                                </li>
-                                <li><a href="#about">about us</a></li>
+                                <li><a class="at-drop-down" href="index.html">Home</a></li>
+                                <li><a href="#about">About us</a></li>
                                 <li><a href="#menu">Menu</a></li>
-                                <li><a href="#blog">blog</a></li>
                                 <li><a href="#gallery">Gallery</a></li>
+                                <li><a href="#blog">Blog</a></li>
                                 <li><a href="#contact">Contact</a></li>
                             </ul>
                         </div>
@@ -116,13 +211,12 @@
             <!--END MAINMENU AREA END-->
         </div>
 
-        <!--HHOME SLIDER AREA-->
+        <!--HOME SLIDER AREA-->
         <div class="slider-area">
             <div class="pogoSlider">
-                <div class="pogoSlider-slide" data-transition="fade" data-duration="1500" style="background:url(img/slider/slide_5.jpg) no-repeat center center / cover;" width="100">
+                <div class="pogoSlider-slide" data-transition="fade" data-duration="1500" style="background:url(img/slider/slide_5.jpg) no-repeat center center / cover;">
                     <h2 class="pogoSlider-slide-element" data-in="expand" data-out="expand" data-duration="700">Welcome to</h2>
                     <h1 class="pogoSlider-slide-element" data-in="expand" data-out="expand" data-duration="1500"><span>Cafe </span>Omeili</h1>
-                    <!-- <h3 class="pogoSlider-slide-element" data-in="expand" data-out="expand" data-duration="2300"><a href="reservation.html">Reservation Now</a></h3> -->
                 </div>
                 <div class="pogoSlider-slide" data-transition="fade" style="background:url(img/slider/slide_1.jpg) no-repeat center center / cover;">
                     <h2 class="pogoSlider-slide-element" data-in="expand" data-out="expand" data-duration="700">Our menus</h2>
@@ -132,17 +226,15 @@
                 <div class="pogoSlider-slide" data-transition="fade" style="background:url(img/slider/slide_2.jpg) no-repeat center center / cover;">
                     <h2 class="pogoSlider-slide-element" data-in="expand" data-out="expand" data-duration="700">Get ready</h2>
                     <h1 class="pogoSlider-slide-element" data-in="expand" data-out="expand" data-duration="1500">to <span>Join</span> with us</h1>
-\                </div>
+                </div>
             </div>
         </div>
         <!--HOME SLIDER AREA END-->
-
     </header>
     <!--END TOP AREA-->
 
     <!--ABOUT AREA-->
     <section class="about-area section-padding" id="about">
-        
         <div class="container wow fadeIn">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -160,7 +252,6 @@
                         <p>Every morning, the mist lifts to reveal peaks that have stood for centuries, and we brew our coffee as slowly as time seems to move up here. The rich aroma blends with the crisp mountain air, inviting you to forget the rush of the world below. Whether you come alone with a book or with someone you love, each visit becomes a memory etched against the horizon. Let the quiet wrap around you like a warm blanket. Let the coffee warm your hands and the view warm your heart. This is not just a café. This is where peace finds you.</p>
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
@@ -227,435 +318,322 @@
 
     <!--MENUS AREA-->
     <section class="menus-area section-padding" id="menu">
-    <div class="container wow fadeIn">
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <div class="area-title text-center">
-                    <h3>Today's Menu</h3>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Filter Buttons - Balanced Categories -->
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <div class="food-menu-list-menu">
-                    <ul>
-                        <li class="filter active" data-filter="all">All</li>
-                        <li class="filter" data-filter=".breakfast">Breakfast</li>
-                        <li class="filter" data-filter=".lunch">Lunch</li>
-                        <li class="filter" data-filter=".dinner">Dinner</li>
-                        <li class="filter" data-filter=".coffee">Coffee</li>
-                        <li class="filter" data-filter=".snacks">Snacks</li>
-                        <li class="filter" data-filter=".beverages">Beverages</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Menu Items Grid -->
-        <div class="row food-menu-list">
-            
-            <!-- BREAKFAST ITEMS (3 items) -->
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
-                <div class="food-menu-img">
-                    <a href="img/menu/breakfast/barista.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/breakfast/barista.jpg" alt="Barista Special">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Barista Special Breakfast</h4>
-                    <p class="menu-price">Rs.850.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
-                <div class="food-menu-img">
-                    <a href="img/menu/breakfast/string-hoppers.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/breakfast/string-hoppers.jpg" alt="String Hoppers">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>String Hoppers with Curry</h4>
-                    <p class="menu-price">Rs.550.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
-                <div class="food-menu-img">
-                    <a href="img/menu/breakfast/english-breakfast.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/breakfast/english-breakfast.jpg" alt="English Breakfast">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>English Breakfast</h4>
-                    <p class="menu-price">Rs.1,200.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
-                <div class="food-menu-img">
-                    <a href="img/menu/breakfast/pancakes.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/breakfast/pancakes.jpg" alt="Pancakes">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Honey Pancakes</h4>
-                    <p class="menu-price">Rs.680.00</p>
-                </div>
-            </div>
-            
-            <!-- LUNCH ITEMS (4 items) -->
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
-                <div class="food-menu-img">
-                    <a href="img/menu/lunch/chicken-biriyani.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/lunch/chicken-biriyani.jpg" alt="Chicken Biriyani">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Chicken Biriyani</h4>
-                    <p class="menu-price">Rs.950.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
-                <div class="food-menu-img">
-                    <a href="img/menu/lunch/rice-curry.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/lunch/rice-curry.jpg" alt="Rice & Curry">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Rice & Curry (Veg/Non-Veg)</h4>
-                    <p class="menu-price">Rs.750.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
-                <div class="food-menu-img">
-                    <a href="img/menu/lunch/burger-fries.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/lunch/burger-fries.jpg" alt="Chicken Burger">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Chicken Burger with Fries</h4>
-                    <p class="menu-price">Rs.850.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
-                <div class="food-menu-img">
-                    <a href="img/menu/lunch/kottu.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/lunch/kottu.jpg" alt="Kottu Roti">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Kottu Roti</h4>
-                    <p class="menu-price">Rs.650.00</p>
-                </div>
-            </div>
-            
-            <!-- DINNER ITEMS (4 items) -->
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
-                <div class="food-menu-img">
-                    <a href="img/menu/dinner/grilled-chicken.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/dinner/grilled-chicken.jpg" alt="Grilled Chicken">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Grilled Chicken with Veggies</h4>
-                    <p class="menu-price">Rs.1,450.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
-                <div class="food-menu-img">
-                    <a href="img/menu/dinner/pasta.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/dinner/pasta.jpg" alt="Pasta">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Creamy Chicken Pasta</h4>
-                    <p class="menu-price">Rs.1,150.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
-                <div class="food-menu-img">
-                    <a href="img/menu/dinner/seafood-rice.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/dinner/seafood-rice.jpg" alt="Seafood Rice">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Seafood Fried Rice</h4>
-                    <p class="menu-price">Rs.1,350.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
-                <div class="food-menu-img">
-                    <a href="img/menu/dinner/steak.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/dinner/steak.jpg" alt="Beef Steak">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Beef Steak with Mash</h4>
-                    <p class="menu-price">Rs.1,950.00</p>
-                </div>
-            </div>
-            
-            <!-- COFFEE ITEMS (3 items) -->
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee">
-                <div class="food-menu-img">
-                    <a href="img/menu/coffee/espresso.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/coffee/espresso.jpg" alt="Espresso">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Espresso</h4>
-                    <p class="menu-price">Rs.350.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee">
-                <div class="food-menu-img">
-                    <a href="img/menu/coffee/latte.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/coffee/latte.jpg" alt="Latte">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Cafe Latte</h4>
-                    <p class="menu-price">Rs.480.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee">
-                <div class="food-menu-img">
-                    <a href="img/menu/coffee/cappuccino.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/coffee/cappuccino.jpg" alt="Cappuccino">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Cappuccino</h4>
-                    <p class="menu-price">Rs.480.00</p>
-                </div>
-            </div>
-            
-            <!-- SNACKS ITEMS (3 items) -->
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu snacks">
-                <div class="food-menu-img">
-                    <a href="img/menu/snacks/french-fries.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/snacks/french-fries.jpg" alt="French Fries">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>French Fries</h4>
-                    <p class="menu-price">Rs.350.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu snacks">
-                <div class="food-menu-img">
-                    <a href="img/menu/snacks/spring-rolls.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/snacks/spring-rolls.jpg" alt="Spring Rolls">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Vegetable Spring Rolls</h4>
-                    <p class="menu-price">Rs.450.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu snacks">
-                <div class="food-menu-img">
-                    <a href="img/menu/snacks/samosa.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/snacks/samosa.jpg" alt="Samosa">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Chicken Samosa (2pcs)</h4>
-                    <p class="menu-price">Rs.280.00</p>
-                </div>
-            </div>
-            
-            <!-- BEVERAGES ITEMS (3 items) -->
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu beverages">
-                <div class="food-menu-img">
-                    <a href="img/menu/beverages/fresh-juice.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/beverages/fresh-juice.jpg" alt="Fresh Juice">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Fresh Fruit Juice</h4>
-                    <p class="menu-price">Rs.380.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu beverages">
-                <div class="food-menu-img">
-                    <a href="img/menu/beverages/milk-shake.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/beverages/milk-shake.jpg" alt="Milkshake">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Chocolate Milkshake</h4>
-                    <p class="menu-price">Rs.450.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu beverages">
-                <div class="food-menu-img">
-                    <a href="img/menu/beverages/soft-drinks.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/beverages/soft-drinks.jpg" alt="Soft Drinks">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Soft Drinks</h4>
-                    <p class="menu-price">Rs.150.00</p>
-                </div>
-            </div>
-            
-            <!-- TEA ITEMS (2 items) -->
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee beverages">
-                <div class="food-menu-img">
-                    <a href="img/menu/tea/ceylon-tea.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/tea/ceylon-tea.jpg" alt="Ceylon Tea">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Ceylon Black Tea</h4>
-                    <p class="menu-price">Rs.180.00</p>
-                </div>
-            </div>
-            
-            <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee beverages">
-                <div class="food-menu-img">
-                    <a href="img/menu/tea/green-tea.jpg" class="menu-popup" data-effect="mfp-zoom-out">
-                        <img src="img/menu/tea/green-tea.jpg" alt="Green Tea">
-                    </a>
-                </div>
-                <div class="food-menu-details">
-                    <h4>Green Tea</h4>
-                    <p class="menu-price">Rs.220.00</p>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-    <!--MENUS AREA END-->
-
-    
-
-    <!--TEAM AREA-->
-    <!-- <section class="team-area section-padding" id="team">
         <div class="container wow fadeIn">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <div class="area-title text-center">
-                        <h3>Awesome chefs</h3>
+                        <h3>Today's Menu</h3>
                     </div>
                 </div>
             </div>
+            
             <div class="row">
-                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 team-slider">
-                    <div class="single-team-member text-center">
-                        <div class="team-member-img ">
-                            <img src="img/team/team-1.jpg" alt="">
-                            <div class="member-social-bookmark">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="member-details">
-                            <h3>Mark Angelila</h3>
-                            <p>Cras senunc massa quisque tempor dolor sit amet </p>
-                        </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="food-menu-list-menu">
+                        <ul>
+                            <li class="filter active" data-filter="all">All</li>
+                            <li class="filter" data-filter=".breakfast">Breakfast</li>
+                            <li class="filter" data-filter=".lunch">Lunch</li>
+                            <li class="filter" data-filter=".dinner">Dinner</li>
+                            <li class="filter" data-filter=".coffee">Coffee</li>
+                            <li class="filter" data-filter=".snacks">Snacks</li>
+                            <li class="filter" data-filter=".beverages">Beverages</li>
+                        </ul>
                     </div>
-                    <div class="single-team-member text-center">
-                        <div class="team-member-img ">
-                            <img src="img/team/team-2.jpg" alt="">
-                            <div class="member-social-bookmark">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="member-details">
-                            <h3>Angel Meskat</h3>
-                            <p>Cras senunc massa quisque tempor dolor sit amet </p>
-                        </div>
+                </div>
+            </div>
+            
+            <div class="row food-menu-list">
+                <!-- BREAKFAST ITEMS -->
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
+                    <div class="food-menu-img">
+                        <a href="img/menu/breakfast/barista.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/breakfast/barista.jpg" alt="Barista Special">
+                        </a>
                     </div>
-                    <div class="single-team-member text-center">
-                        <div class="team-member-img ">
-                            <img src="img/team/team-3.jpg" alt="">
-                            <div class="member-social-bookmark">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="member-details">
-                            <h3>Jon Doe</h3>
-                            <p>Cras senunc massa quisque tempor dolor sit amet </p>
-                        </div>
+                    <div class="food-menu-details">
+                        <h4>Barista Special Breakfast</h4>
+                        <p class="menu-price">Rs.850.00</p>
                     </div>
-                    <div class="single-team-member text-center">
-                        <div class="team-member-img ">
-                            <img src="img/team/team-4.jpg" alt="">
-                            <div class="member-social-bookmark">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="member-details">
-                            <h3>Angel Di Maria</h3>
-                            <p>Cras senunc massa quisque tempor dolor sit amet </p>
-                        </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
+                    <div class="food-menu-img">
+                        <a href="img/menu/breakfast/string-hoppers.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/breakfast/string-hoppers.jpg" alt="String Hoppers">
+                        </a>
                     </div>
-                    <div class="single-team-member text-center">
-                        <div class="team-member-img ">
-                            <img src="img/team/team-5.jpg" alt="">
-                            <div class="member-social-bookmark">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="member-details">
-                            <h3>Park Ji Sung</h3>
-                            <p>Cras senunc massa quisque tempor dolor sit amet </p>
-                        </div>
+                    <div class="food-menu-details">
+                        <h4>String Hoppers with Curry</h4>
+                        <p class="menu-price">Rs.550.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
+                    <div class="food-menu-img">
+                        <a href="img/menu/breakfast/english-breakfast.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/breakfast/english-breakfast.jpg" alt="English Breakfast">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>English Breakfast</h4>
+                        <p class="menu-price">Rs.1,200.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu breakfast">
+                    <div class="food-menu-img">
+                        <a href="img/menu/breakfast/pancakes.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/breakfast/pancakes.jpg" alt="Pancakes">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Honey Pancakes</h4>
+                        <p class="menu-price">Rs.680.00</p>
+                    </div>
+                </div>
+                
+                <!-- LUNCH ITEMS -->
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
+                    <div class="food-menu-img">
+                        <a href="img/menu/lunch/chicken-biriyani.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/lunch/chicken-biriyani.jpg" alt="Chicken Biriyani">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Chicken Biriyani</h4>
+                        <p class="menu-price">Rs.950.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
+                    <div class="food-menu-img">
+                        <a href="img/menu/lunch/rice-curry.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/lunch/rice-curry.jpg" alt="Rice & Curry">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Rice & Curry (Veg/Non-Veg)</h4>
+                        <p class="menu-price">Rs.750.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
+                    <div class="food-menu-img">
+                        <a href="img/menu/lunch/burger-fries.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/lunch/burger-fries.jpg" alt="Chicken Burger">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Chicken Burger with Fries</h4>
+                        <p class="menu-price">Rs.850.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu lunch">
+                    <div class="food-menu-img">
+                        <a href="img/menu/lunch/kottu.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/lunch/kottu.jpg" alt="Kottu Roti">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Kottu Roti</h4>
+                        <p class="menu-price">Rs.650.00</p>
+                    </div>
+                </div>
+                
+                <!-- DINNER ITEMS -->
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
+                    <div class="food-menu-img">
+                        <a href="img/menu/dinner/grilled-chicken.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/dinner/grilled-chicken.jpg" alt="Grilled Chicken">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Grilled Chicken with Veggies</h4>
+                        <p class="menu-price">Rs.1,450.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
+                    <div class="food-menu-img">
+                        <a href="img/menu/dinner/pasta.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/dinner/pasta.jpg" alt="Pasta">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Creamy Chicken Pasta</h4>
+                        <p class="menu-price">Rs.1,150.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
+                    <div class="food-menu-img">
+                        <a href="img/menu/dinner/seafood-rice.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/dinner/seafood-rice.jpg" alt="Seafood Rice">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Seafood Fried Rice</h4>
+                        <p class="menu-price">Rs.1,350.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu dinner">
+                    <div class="food-menu-img">
+                        <a href="img/menu/dinner/steak.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/dinner/steak.jpg" alt="Beef Steak">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Beef Steak with Mash</h4>
+                        <p class="menu-price">Rs.1,950.00</p>
+                    </div>
+                </div>
+                
+                <!-- COFFEE ITEMS -->
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee">
+                    <div class="food-menu-img">
+                        <a href="img/menu/coffee/espresso.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/coffee/espresso.jpg" alt="Espresso">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Espresso</h4>
+                        <p class="menu-price">Rs.350.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee">
+                    <div class="food-menu-img">
+                        <a href="img/menu/coffee/latte.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/coffee/latte.jpg" alt="Latte">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Cafe Latte</h4>
+                        <p class="menu-price">Rs.480.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee">
+                    <div class="food-menu-img">
+                        <a href="img/menu/coffee/cappuccino.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/coffee/cappuccino.jpg" alt="Cappuccino">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Cappuccino</h4>
+                        <p class="menu-price">Rs.480.00</p>
+                    </div>
+                </div>
+                
+                <!-- SNACKS ITEMS -->
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu snacks">
+                    <div class="food-menu-img">
+                        <a href="img/menu/snacks/french-fries.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/snacks/french-fries.jpg" alt="French Fries">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>French Fries</h4>
+                        <p class="menu-price">Rs.350.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu snacks">
+                    <div class="food-menu-img">
+                        <a href="img/menu/snacks/spring-rolls.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/snacks/spring-rolls.jpg" alt="Spring Rolls">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Vegetable Spring Rolls</h4>
+                        <p class="menu-price">Rs.450.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu snacks">
+                    <div class="food-menu-img">
+                        <a href="img/menu/snacks/samosa.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/snacks/samosa.jpg" alt="Samosa">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Chicken Samosa (2pcs)</h4>
+                        <p class="menu-price">Rs.280.00</p>
+                    </div>
+                </div>
+                
+                <!-- BEVERAGES ITEMS -->
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu beverages">
+                    <div class="food-menu-img">
+                        <a href="img/menu/beverages/fresh-juice.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/beverages/fresh-juice.jpg" alt="Fresh Juice">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Fresh Fruit Juice</h4>
+                        <p class="menu-price">Rs.380.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu beverages">
+                    <div class="food-menu-img">
+                        <a href="img/menu/beverages/milk-shake.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/beverages/milk-shake.jpg" alt="Milkshake">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Chocolate Milkshake</h4>
+                        <p class="menu-price">Rs.450.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu beverages">
+                    <div class="food-menu-img">
+                        <a href="img/menu/beverages/soft-drinks.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/beverages/soft-drinks.jpg" alt="Soft Drinks">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Soft Drinks</h4>
+                        <p class="menu-price">Rs.150.00</p>
+                    </div>
+                </div>
+                
+                <!-- TEA ITEMS -->
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee beverages">
+                    <div class="food-menu-img">
+                        <a href="img/menu/tea/ceylon-tea.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/tea/ceylon-tea.jpg" alt="Ceylon Tea">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Ceylon Black Tea</h4>
+                        <p class="menu-price">Rs.180.00</p>
+                    </div>
+                </div>
+                
+                <div class="mix col-md-3 col-lg-3 col-sm-6 col-xs-12 single-menu coffee beverages">
+                    <div class="food-menu-img">
+                        <a href="img/menu/tea/green-tea.jpg" class="menu-popup" data-effect="mfp-zoom-out">
+                            <img src="img/menu/tea/green-tea.jpg" alt="Green Tea">
+                        </a>
+                    </div>
+                    <div class="food-menu-details">
+                        <h4>Green Tea</h4>
+                        <p class="menu-price">Rs.220.00</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section> -->
-    <!--TEAM AREA END-->
-    <!--Gallery AREA start-->
+    </section>
+    <!--MENUS AREA END-->
+
+              <!--========== GALLERY AREA ==========-->
     <section class="gallery-area section-padding" id="gallery">
-        <div class="container wow fadeIn">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <div class="area-title text-center">
@@ -669,38 +647,22 @@
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <div class="gallery-filter-menu">
                         <ul>
-                            <li class="gallery-filter active" data-gallery-filter="all">All</li>
-                            <li class="gallery-filter" data-gallery-filter=".interior">Interior</li>
-                            <li class="gallery-filter" data-gallery-filter=".food">Food</li>
-                            <li class="gallery-filter" data-gallery-filter=".events">Events</li>
-                            <li class="gallery-filter" data-gallery-filter=".nature">Nature View</li>
+                            <li class="gallery-filter-btn active" data-filter="all">All</li>
+                            <li class="gallery-filter-btn" data-filter="food">Food</li>
+                            <li class="gallery-filter-btn" data-filter="nature">Nature View</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <!-- Gallery Grid -->
-            <div class="row gallery-grid">
-                <!-- Interior Images -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item interior">
+            <div class="row gallery-grid-container" id="galleryContainer">
+                <!-- FOOD IMAGES -->
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
                     <div class="gallery-img">
-                        <img src="img/gallery/interior-1.jpg" alt="Cafe Interior" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Cafe+Interior'">
+                        <img src="https://picsum.photos/id/225/600/400" alt="Signature Latte">
                         <div class="gallery-overlay">
-                            <a href="img/gallery/interior-1.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
-                        </div>
-                        <div class="gallery-caption">
-                            <h5>Cozy Seating Area</h5>
-                            <p>Interior</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Food Images -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
-                    <div class="gallery-img">
-                        <img src="img/gallery/food-1.jpg" alt="Specialty Coffee" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Specialty+Coffee'">
-                        <div class="gallery-overlay">
-                            <a href="img/gallery/food-1.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
+                            <a href="https://picsum.photos/id/225/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
                         </div>
                         <div class="gallery-caption">
                             <h5>Signature Latte</h5>
@@ -709,40 +671,11 @@
                     </div>
                 </div>
                 
-                <!-- Nature View Images -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item nature">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
                     <div class="gallery-img">
-                        <img src="img/gallery/view-1.jpg" alt="Mountain View" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Mountain+View'">
+                        <img src="https://picsum.photos/id/106/600/400" alt="Dessert Platter">
                         <div class="gallery-overlay">
-                            <a href="img/gallery/view-1.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
-                        </div>
-                        <div class="gallery-caption">
-                            <h5>Misty Mountains</h5>
-                            <p>Nature View</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Events Images -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item events">
-                    <div class="gallery-img">
-                        <img src="img/gallery/event-1.jpg" alt="Live Music" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Live+Music'">
-                        <div class="gallery-overlay">
-                            <a href="img/gallery/event-1.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
-                        </div>
-                        <div class="gallery-caption">
-                            <h5>Live Music Nights</h5>
-                            <p>Events</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- More Food -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
-                    <div class="gallery-img">
-                        <img src="img/gallery/food-2.jpg" alt="Dessert Platter" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Dessert+Platter'">
-                        <div class="gallery-overlay">
-                            <a href="img/gallery/food-2.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
+                            <a href="https://picsum.photos/id/106/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
                         </div>
                         <div class="gallery-caption">
                             <h5>Dessert Specials</h5>
@@ -751,26 +684,38 @@
                     </div>
                 </div>
                 
-                <!-- More Interior -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item interior">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
                     <div class="gallery-img">
-                        <img src="img/gallery/interior-2.jpg" alt="Outdoor Seating" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Outdoor+Seating'">
+                        <img src="https://picsum.photos/id/455/600/400" alt="Healthy Breakfast">
                         <div class="gallery-overlay">
-                            <a href="img/gallery/interior-2.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
+                            <a href="https://picsum.photos/id/455/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
                         </div>
                         <div class="gallery-caption">
-                            <h5>Outdoor Terrace</h5>
-                            <p>Interior</p>
+                            <h5>Healthy Breakfast</h5>
+                            <p>Food & Drinks</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- More Nature -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item nature">
+                <!-- NATURE IMAGES -->
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item nature">
                     <div class="gallery-img">
-                        <img src="img/gallery/view-2.jpg" alt="Sunset View" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Sunset+View'">
+                        <img src="https://picsum.photos/id/104/600/400" alt="Misty Mountains">
                         <div class="gallery-overlay">
-                            <a href="img/gallery/view-2.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
+                            <a href="https://picsum.photos/id/104/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
+                        </div>
+                        <div class="gallery-caption">
+                            <h5>Misty Mountains</h5>
+                            <p>Nature View</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item nature">
+                    <div class="gallery-img">
+                        <img src="https://picsum.photos/id/39/600/400" alt="Golden Hour Sunset">
+                        <div class="gallery-overlay">
+                            <a href="https://picsum.photos/id/39/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
                         </div>
                         <div class="gallery-caption">
                             <h5>Golden Hour</h5>
@@ -779,43 +724,62 @@
                     </div>
                 </div>
                 
-                <!-- More Events -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item events">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item nature">
                     <div class="gallery-img">
-                        <img src="img/gallery/event-2.jpg" alt="Celebration" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Celebration'">
+                        <img src="https://picsum.photos/id/96/600/400" alt="Scenic Waterfall">
                         <div class="gallery-overlay">
-                            <a href="img/gallery/event-2.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
+                            <a href="https://picsum.photos/id/96/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
                         </div>
                         <div class="gallery-caption">
-                            <h5>Birthday Celebrations</h5>
-                            <p>Events</p>
+                            <h5>Scenic Waterfall</h5>
+                            <p>Nature View</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Final Food Item -->
-                <div class="mix col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
                     <div class="gallery-img">
-                        <img src="img/gallery/food-3.jpg" alt="Breakfast Platter" onerror="this.src='https://placehold.co/600x400/e8dcc8/8B7355?text=Breakfast+Platter'">
+                        <img src="https://picsum.photos/id/312/600/400" alt="Creamy Pasta">
                         <div class="gallery-overlay">
-                            <a href="img/gallery/food-3.jpg" class="gallery-icon gallery-popup" data-effect="mfp-zoom-out"><i class="fa fa-search-plus"></i></a>
+                            <a href="https://picsum.photos/id/312/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
                         </div>
                         <div class="gallery-caption">
-                            <h5>Healthy Breakfast</h5>
+                            <h5>Creamy Pasta</h5>
+                            <p>Food & Drinks</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item nature">
+                    <div class="gallery-img">
+                        <img src="https://picsum.photos/id/15/600/400" alt="Tea Garden">
+                        <div class="gallery-overlay">
+                            <a href="https://picsum.photos/id/15/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
+                        </div>
+                        <div class="gallery-caption">
+                            <h5>Tea Plantation</h5>
+                            <p>Nature View</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 gallery-item food">
+                    <div class="gallery-img">
+                        <img src="https://picsum.photos/id/367/600/400" alt="Latte Art">
+                        <div class="gallery-overlay">
+                            <a href="https://picsum.photos/id/367/1200/800" class="gallery-icon gallery-popup"><i class="fa fa-search-plus"></i></a>
+                        </div>
+                        <div class="gallery-caption">
+                            <h5>Latte Art</h5>
                             <p>Food & Drinks</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- View More Button -->
-            <div class="row">
-                <div class="col-md-12 text-center margin-top">
-                    <a href="#" class="read-more" id="viewMoreGallery">View More Photos</a>
-                </div>
-            </div>
         </div>
     </section>
+    <!--========== GALLERY AREA END ==========-->
+   
 
     <!--BLOG AREA-->
     <section class="blog-area section-padding" id="blog">
@@ -823,18 +787,17 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <div class="area-title text-center">
-                        <h3>Form The Blog</h3>
+                        <h3>From The Blog</h3>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                     <div class="single-post text-center">
-                        <div class="blog-post-img ">
+                        <div class="blog-post-img">
                             <img src="img/blog/blog-1.jpg" alt="">
                         </div>
                         <div class="post-details">
-                            <!-- <a href="#" class="post-meta-button">Life style</a> -->
                             <h3><a href="#">Sri Lanka T20 Captain Dasun Shanaka visited Café Omeili — proving that excellence recognizes excellence.</a></h3>
                             <p class="post-meta"><a href="#">03 March, 2026</a> - <a href="#">5 Comments</a></p>
                         </div>
@@ -842,12 +805,11 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                     <div class="single-post text-center">
-                        <div class="blog-post-img ">
+                        <div class="blog-post-img">
                             <img src="img/blog/blog-2.jpg" alt="">
                         </div>
                         <div class="post-details">
-                            <!-- <a href="#" class="post-meta-button"></a> -->
-                            <h3><a href="#">Honored to welcome former Australian cricket captain Aaron Finch to Café Omeili </a></h3>
+                            <h3><a href="#">Honored to welcome former Australian cricket captain Aaron Finch to Café Omeili</a></h3>
                             <p class="post-meta"><a href="#">27 February, 2026</a> - <a href="#">5 Comments</a></p>
                         </div>
                     </div>
@@ -863,7 +825,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <div class="area-title text-center">
-                        <h4>Follow us on Instagram <a href="https://www.instagram.com/cafeomeili?fbclid=IwY2xjawRWoC9leHRuA2FlbQIxMABicmlkETFqeU85TEhZOUNuVHZ4Wjlsc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjluC1ES5PgPMT0L2ui4OKh4IQDuvVD_BRo57R4bpGpKoimWabolSwE84pMT_aem_QEzInQCT_3LB7I9md8AQoQ">@cafeomeili</a></h4>
+                        <h4>Follow us on Instagram <a href="https://www.instagram.com/cafeomeili">@cafeomeili</a></h4>
                     </div>
                 </div>
             </div>
@@ -878,7 +840,7 @@
     </section>
     <!--INSTAGRAM FEED END-->
 
-    <!--FOOER AREA-->
+    <!--FOOTER AREA-->
     <div class="footer-area" id="contact">
         <div class="footer-area-bg"></div>
         <div class="container wow fadeIn">
@@ -886,10 +848,10 @@
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <div class="footer-top section-padding text-center">
                         <div class="footer-logo">
-                            <a href="#"><img src="img/footer_white_logo.png" alt="" width="150" ></a>
+                            <a href="#"><img src="img/footer_white_logo.png" alt="" width="150"></a>
                         </div>
                         <div class="footer-address">
-                            <p>Kurunegala road, Madawala, Galagedara , 20000</p>
+                            <p>Kurunegala road, Madawala, Galagedara, 20000</p>
                             <p><a href="callto:+94771720003">077 172 0003</a></p>
                         </div>
                         <div class="footer-social-bookmark">
@@ -897,7 +859,6 @@
                                 <li><a href="https://www.facebook.com/profile.php?id=61572546878481"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="https://wa.me/94771720003"><i class="fa fa-whatsapp"></i></a></li>
                                 <li><a href="https://www.instagram.com/cafeomeili/"><i class="fa fa-instagram"></i></a></li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -906,20 +867,17 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 text-center">
                     <div class="footer-copyright">
-                            <p>&copy;  All Rights Reserved | Cafe Omeili Designed & Developed by Silicon Radon Networks (Pvt) Ltd</a>.</p>
+                        <p>&copy; All Rights Reserved | Cafe Omeili Designed & Developed by Silicon Radon Networks (Pvt) Ltd</p>
                     </div>
+                </div>
             </div>
-         </div>
         </div>
     </div>
-    <!--FOOER AREA END-->
-
+    <!--FOOTER AREA END-->
 
     <!--====== SCRIPTS JS ======-->
-    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
-
-    <!--====== PLUGINS JS ======-->
     <script src="js/vendor/jquery.easing.1.3.js"></script>
     <script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
     <script src="js/jquery.pogo-slider.js"></script>
@@ -934,66 +892,49 @@
     <script src="js/wow.min.js"></script>
     <script src="js/contact-form.js"></script>
     <script src="js/jquery.sticky.js"></script>
-
-    <!--===== ACTIVE JS=====-->
     <script src="js/main.js"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"05c60afabf3e4b64ba091c1c292eafc9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 
-<script>
-        $(document).ready(function() {
-            // Initialize MixItUp for gallery filtering
-            if ($.fn.mixitup) {
-                $('.gallery-grid').mixitup({
-                    selectors: {
-                        target: '.gallery-item',
-                        filter: '.gallery-filter'
-                    },
-                    animation: {
-                        duration: 400,
-                        effects: 'fade scale'
-                    }
-                });
-            }
-            
-            // Magnific Popup for gallery images
-            $('.gallery-popup').magnificPopup({
-                type: 'image',
-                removalDelay: 300,
-                mainClass: 'mfp-zoom-out',
-                gallery: {
-                    enabled: true,
-                    navigateByImgClick: true,
-                    preload: [0,1]
-                },
-                image: {
-                    titleSrc: function(item) {
-                        var caption = item.el.closest('.gallery-item').find('.gallery-caption h5').text();
-                        return caption || 'Cafe Omeili Gallery';
-                    }
-                }
-            });
-            
-            // Active filter class toggle
-            $('.gallery-filter').on('click', function() {
-                $('.gallery-filter').removeClass('active');
-                $(this).addClass('active');
-            });
-            
-            // View More button functionality
-            $('#viewMoreGallery').on('click', function(e) {
-                e.preventDefault();
-                var $hiddenItems = $('.gallery-item.hidden');
-                if ($hiddenItems.length > 0) {
-                    $('.gallery-grid').mixitup('filter', 'all');
-                    $(this).text('Show Less');
+    
+  <script>
+$(document).ready(function() {
+    // Gallery Filter Functionality - EXACTLY LIKE MENU SECTION
+    $('.gallery-filter-btn').on('click', function() {
+        var filterValue = $(this).data('filter');
+        
+        // Update active button - like menu
+        $('.gallery-filter-btn').removeClass('active');
+        $(this).addClass('active');
+        
+        // Filter with animation like menu section
+        if (filterValue === 'all') {
+            $('.gallery-item').fadeIn(400).show();
+        } else {
+            $('.gallery-item').each(function() {
+                if ($(this).hasClass(filterValue)) {
+                    $(this).fadeIn(400).show();
                 } else {
-                    $('.gallery-grid').mixitup('filter', '.interior, .food, .events, .nature');
-                    $(this).text('View More Photos');
+                    $(this).fadeOut(400).hide();
                 }
             });
-        });
-    </script>
+        }
+    });
+    
+    // Magnific Popup for gallery images
+    $('.gallery-popup').magnificPopup({
+        type: 'image',
+        removalDelay: 300,
+        mainClass: 'mfp-zoom-out',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0, 1]
+        }
+    });
+    
+    // Show all items initially
+    $('.gallery-item').show();
+});
+</script>
+
 </body>
-
-
 </html>
