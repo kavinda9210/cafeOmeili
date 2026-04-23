@@ -138,9 +138,9 @@ jQuery(document).on('ready', function ($) {
 
 
     /*---------------------------
-        MENU LIST MIXITUP FILTERING
+        MENU LIST MIXITUP FILTERING (disabled — using custom filter JS instead)
     ----------------------------*/
-    $('.food-menu-list').mixItUp();
+    // $('.food-menu-list').mixItUp();
 
 
     /*---------------------------
