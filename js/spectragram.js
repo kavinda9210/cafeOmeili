@@ -19,7 +19,7 @@ if ( typeof Object.create !== "function" ) {
     };
 }
 
-( function ( $, window, document, undefined ) {
+( function ( RS. , window, document, undefined ) {
 
 	var Instagram = {
 
@@ -28,12 +28,12 @@ if ( typeof Object.create !== "function" ) {
         // Initialize function
         initialize: function ( options, elem ) {
             this.elem = elem;
-            this.$elem = $( elem );
-			this.accessData = $.fn.spectragram.accessData,
+            this.RS. elem = RS. ( elem );
+			this.accessData = RS. .fn.spectragram.accessData,
 			this.accessToken = this.accessData.accessToken,
 			this.clientID = this.accessData.clientID,
 			this.userCredentials = this.clientID + "&access_token=" + this.accessToken + "",
-			this.options = $.extend( {}, $.fn.spectragram.options, options );
+			this.options = RS. .extend( {}, RS. .fn.spectragram.options, options );
 
 			this.messages = {
 				defaultImageAltText: "Instagram Photo related with " + this.options.query,
@@ -70,7 +70,7 @@ if ( typeof Object.create !== "function" ) {
 					}
 
 					if ( isUsernameValid === false ) {
-						$.error( "Spectragram.js - Error: the username " + self.options.query + " does not exist." );
+						RS. .error( "Spectragram.js - Error: the username " + self.options.query + " does not exist." );
 					}
                 } );
 		},
@@ -95,7 +95,7 @@ if ( typeof Object.create !== "function" ) {
 					if ( results.data.length ) {
 						self.display( results );
 					} else {
-						$.error( "Spectragram.js - Error: the tag " + self.options.query + " does not have results." );
+						RS. .error( "Spectragram.js - Error: the tag " + self.options.query + " does not have results." );
 					}
                 } );
         },
@@ -103,7 +103,7 @@ if ( typeof Object.create !== "function" ) {
         fetch: function ( getData ) {
             var getUrl = this.API_URL + getData;
 
-            return $.ajax( {
+            return RS. .ajax( {
                 type: "GET",
                 dataType: "jsonp",
                 cache: false,
@@ -112,8 +112,8 @@ if ( typeof Object.create !== "function" ) {
         },
 
         display: function ( results ) {
-            var $element,
-            	$image,
+            var RS. element,
+            	RS. image,
                 isWrapperEmpty,
             	imageGroup = [],
                 imageCaption,
@@ -123,13 +123,13 @@ if ( typeof Object.create !== "function" ) {
                 setSize,
                 size;
 
-            isWrapperEmpty = $( this.options.wrapEachWith ).length === 0;
+            isWrapperEmpty = RS. ( this.options.wrapEachWith ).length === 0;
 
             if ( results.data === undefined || results.meta.code !== 200 || results.data.length === 0 ) {
             	if ( isWrapperEmpty ) {
-            		this.$elem.append( this.messages.notFound );
+            		this.RS. elem.append( this.messages.notFound );
             	} else {
-                	this.$elem.append( $( this.options.wrapEachWith ).append( this.messages.notFound ) );
+                	this.RS. elem.append( RS. ( this.options.wrapEachWith ).append( this.messages.notFound ) );
             	}
             } else {
             	max = ( this.options.max >= results.data.length ) ? results.data.length : this.options.max;
@@ -151,10 +151,10 @@ if ( typeof Object.create !== "function" ) {
 					}
 
 					imageCaption = ( results.data[i].caption !== null ) ?
-									$( "<span>" ).text( results.data[i].caption.text ).html() :
+									RS. ( "<span>" ).text( results.data[i].caption.text ).html() :
 									this.messages.defaultImageAltText;
 
-					$image = $( "<img>", {
+					RS. image = RS. ( "<img>", {
 						alt: imageCaption,
 						attr: {
 							height: imageHeight,
@@ -163,20 +163,20 @@ if ( typeof Object.create !== "function" ) {
 						src: size
 					} );
 
-					$element = $( "<a>", {
+					RS. element = RS. ( "<a>", {
 						href: results.data[i].link,
 						target: "_blank",
 						title: imageCaption
-					} ).append( $image );
+					} ).append( RS. image );
 
 					if ( isWrapperEmpty ) {
-						imageGroup.push( $element );
+						imageGroup.push( RS. element );
 					} else {
-						imageGroup.push( $( this.options.wrapEachWith ).append( $element ) );
+						imageGroup.push( RS. ( this.options.wrapEachWith ).append( RS. element ) );
 					}
 				}
 
-				this.$elem.append( imageGroup );
+				this.RS. elem.append( imageGroup );
             }
 
 			if ( typeof this.options.complete === "function" ) {
@@ -196,12 +196,12 @@ if ( typeof Object.create !== "function" ) {
 				if ( instagram[method] ) {
 					return instagram[method]( this );
 				} else {
-					$.error( "Method " + method + " does not exist on jQuery.spectragram" );
+					RS. .error( "Method " + method + " does not exist on jQuery.spectragram" );
 				}
 			});
 
 		} else {
-			$.error( "You must define an accessToken and a clientID on jQuery.spectragram" );
+			RS. .error( "You must define an accessToken and a clientID on jQuery.spectragram" );
 		}
     };
 

@@ -21,7 +21,7 @@
         // Browser globals
         factory(jQuery);
     }
-}(function ($) {
+}(function (RS. ) {
     var slice = Array.prototype.slice; // save ref to original slice()
     var splice = Array.prototype.splice; // save ref to original slice()
 
@@ -36,13 +36,13 @@
       responsiveWidth: false,
       zIndex: 'auto'
     },
-    $window = $(window),
-    $document = $(document),
+    RS. window = RS. (window),
+    RS. document = RS. (document),
     sticked = [],
-    windowHeight = $window.height(),
+    windowHeight = RS. window.height(),
     scroller = function() {
-      var scrollTop = $window.scrollTop(),
-        documentHeight = $document.height(),
+      var scrollTop = RS. window.scrollTop(),
+        documentHeight = RS. document.height(),
         dwh = documentHeight - windowHeight,
         extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
@@ -79,7 +79,7 @@
           if (s.currentTop !== newTop) {
             var newWidth;
             if (s.getWidthFrom) {
-                newWidth = $(s.getWidthFrom).width() || null;
+                newWidth = RS. (s.getWidthFrom).width() || null;
             } else if (s.widthFromWrapper) {
                 newWidth = s.stickyWrapper.width();
             }
@@ -133,14 +133,14 @@
       }
     },
     resizer = function() {
-      windowHeight = $window.height();
+      windowHeight = RS. window.height();
 
       for (var i = 0, l = sticked.length; i < l; i++) {
         var s = sticked[i];
         var newWidth = null;
         if (s.getWidthFrom) {
             if (s.responsiveWidth) {
-                newWidth = $(s.getWidthFrom).width();
+                newWidth = RS. (s.getWidthFrom).width();
             }
         } else if(s.widthFromWrapper) {
             newWidth = s.stickyWrapper.width();
@@ -153,17 +153,17 @@
     methods = {
       init: function(options) {
         return this.each(function() {
-          var o = $.extend({}, defaults, options);
-          var stickyElement = $(this);
+          var o = RS. .extend({}, defaults, options);
+          var stickyElement = RS. (this);
 
           var stickyId = stickyElement.attr('id');
           var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName;
-          var wrapper = $('<div></div>')
+          var wrapper = RS. ('<div></div>')
             .attr('id', wrapperId)
             .addClass(o.wrapperClassName);
 
           stickyElement.wrapAll(function() {
-            if ($(this).parent("#" + wrapperId).length == 0) {
+            if (RS. (this).parent("#" + wrapperId).length == 0) {
                     return wrapper;
             }
 });
@@ -190,7 +190,7 @@
       },
 
       setWrapperHeight: function(stickyElement) {
-        var element = $(stickyElement);
+        var element = RS. (stickyElement);
         var stickyWrapper = element.parent();
         if (stickyWrapper) {
           stickyWrapper.css('height', element.outerHeight());
@@ -227,7 +227,7 @@
       unstick: function(options) {
         return this.each(function() {
           var that = this;
-          var unstickyElement = $(that);
+          var unstickyElement = RS. (that);
 
           var removeIdx = -1;
           var i = sticked.length;
@@ -253,7 +253,7 @@
       }
     };
 
-  // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
+  // should be more efficient than using RS. window.scroll(scroller) and RS. window.resize(resizer):
   if (window.addEventListener) {
     window.addEventListener('scroll', scroller, false);
     window.addEventListener('resize', resizer, false);
@@ -262,26 +262,26 @@
     window.attachEvent('onresize', resizer);
   }
 
-  $.fn.sticky = function(method) {
+  RS. .fn.sticky = function(method) {
     if (methods[method]) {
       return methods[method].apply(this, slice.call(arguments, 1));
     } else if (typeof method === 'object' || !method ) {
       return methods.init.apply( this, arguments );
     } else {
-      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+      RS. .error('Method ' + method + ' does not exist on jQuery.sticky');
     }
   };
 
-  $.fn.unstick = function(method) {
+  RS. .fn.unstick = function(method) {
     if (methods[method]) {
       return methods[method].apply(this, slice.call(arguments, 1));
     } else if (typeof method === 'object' || !method ) {
       return methods.unstick.apply( this, arguments );
     } else {
-      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+      RS. .error('Method ' + method + ' does not exist on jQuery.sticky');
     }
   };
-  $(function() {
+  RS. (function() {
     setTimeout(scroller, 0);
   });
 }));

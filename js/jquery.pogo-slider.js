@@ -6,7 +6,7 @@
  * 
  **/
 
-(function ($, window, document, undefined) {
+(function (RS. , window, document, undefined) {
 
     function appendPrefixedStyles(obj, prop, val) {
 
@@ -24,7 +24,7 @@
 
     }
 
-    $.fn.precss = function (styles) {
+    RS. .fn.precss = function (styles) {
 
         var prefixedStyles = {};
 
@@ -49,7 +49,7 @@
 })(jQuery, window, document);
 
 
-(function ($, window, document, undefined) {
+(function (RS. , window, document, undefined) {
 
     'use strict';
 
@@ -121,8 +121,8 @@
     function Plugin(element, options) {
 
         this.element = element;
-        this.$element = $(element);
-        this.settings = $.extend({}, defaults, options);
+        this.RS. element = RS. (element);
+        this.settings = RS. .extend({}, defaults, options);
         this.currentSlideIndex = 0;
         this.prevSlideIndex = 0;
         this.slideTimeoutId = 0;
@@ -145,42 +145,42 @@
 
             var self = this;
 
-            self.$element.find('.pogoSlider-slide').each(function () {
+            self.RS. element.find('.pogoSlider-slide').each(function () {
 
                 var children = [];
                 var elementTransitionDuration = 0;
 
                 // store the original styles, so that we can restore them later
-                $(this).data('original-styles', $(this).attr('style'));
+                RS. (this).data('original-styles', RS. (this).attr('style'));
 
                 // create the slides object sotring all data
-                $(this).find('.pogoSlider-slide-element').each(function () {
+                RS. (this).find('.pogoSlider-slide-element').each(function () {
 
-                    var startTime = parseInt($(this).data('start')) !== undefined ? $(this).data('start') : self.settings.elementTransitionStart;
-                    var duration = parseInt($(this).data('duration')) || self.settings.elementTransitionDuration;
+                    var startTime = parseInt(RS. (this).data('start')) !== undefined ? RS. (this).data('start') : self.settings.elementTransitionStart;
+                    var duration = parseInt(RS. (this).data('duration')) || self.settings.elementTransitionDuration;
 
                     if ((startTime + duration) > elementTransitionDuration) {
                         elementTransitionDuration = (startTime + duration);
                     }
 
                     children.push({
-                        $element: $(this),
+                        RS. element: RS. (this),
                         element: this,
                         startTime: startTime,
                         duration: duration,
-                        transitionIn: $(this).data('in') || self.settings.elementTransitionIn,
-                        transitionOut: $(this).data('out') || self.settings.elementTransitionOut
+                        transitionIn: RS. (this).data('in') || self.settings.elementTransitionIn,
+                        transitionOut: RS. (this).data('out') || self.settings.elementTransitionOut
                     });
 
-                    $(this).css('opacity', 0);
+                    RS. (this).css('opacity', 0);
 
                 });
 
                 var slide = {
-                    $element: $(this),
+                    RS. element: RS. (this),
                     element: this,
-                    transition: $(this).data('transition') || self.settings.slideTransition,
-                    duration: parseInt($(this).data('duration')) || self.settings.slideTransitionDuration,
+                    transition: RS. (this).data('transition') || self.settings.slideTransition,
+                    duration: parseInt(RS. (this).data('duration')) || self.settings.slideTransitionDuration,
                     elementTransitionDuration: elementTransitionDuration,
                     totalSlideDuration: self.settings.autoplayTimeout + elementTransitionDuration,
                     children: children
@@ -193,7 +193,7 @@
             self.numSlides = self.slides.length;
 
             // initialize the first slide
-            self.slides[0].$element.css('opacity', 1);
+            self.slides[0].RS. element.css('opacity', 1);
 
             // if autoplay set the corrext startTime and time remaining properties
             if (self.settings.autoplay && self.settings.displayProgess) {
@@ -201,9 +201,9 @@
             }
 
             // set the correct aspect ratio of the slider
-            self.$element.css('padding-bottom', (100 / (self.settings.targetWidth / self.settings.targetHeight)) + '%');
+            self.RS. element.css('padding-bottom', (100 / (self.settings.targetWidth / self.settings.targetHeight)) + '%');
 
-            var numImages = self.$element.find('img').length;
+            var numImages = self.RS. element.find('img').length;
 
             // if there are images to load
             if (numImages > 0) {
@@ -211,14 +211,14 @@
                 var imagesLoaded = 0;
 
                 // show a loading div while assets are being loaded
-                self.$element.prepend('<div class="pogoSlider-loading"><div class="pogoSlider-loading-icon"></div></div>');
+                self.RS. element.prepend('<div class="pogoSlider-loading"><div class="pogoSlider-loading-icon"></div></div>');
 
                 // when all images have loaded
-                self.$element.find('img').one('load', function () {
+                self.RS. element.find('img').one('load', function () {
 
                     if (++imagesLoaded === numImages) {
 
-                        $('.pogoSlider-loading').remove();
+                        RS. ('.pogoSlider-loading').remove();
 
                         self._onSliderReady();
 
@@ -226,7 +226,7 @@
 
                 }).each(function () {
                     if (this.complete) {
-                        $(this).trigger('load');
+                        RS. (this).trigger('load');
                     }
                 });
 
@@ -261,7 +261,7 @@
                 self._preserveTargetSize();
 
                 if (self.settings.responsive) {
-                    $(window).on('resize', function () {
+                    RS. (window).on('resize', function () {
                         self._preserveTargetSize();
                     });
                 }
@@ -270,11 +270,11 @@
 
             if (self.settings.pauseOnHover) {
 
-                self.$element.on('mouseenter', function () {
+                self.RS. element.on('mouseenter', function () {
                     self.pause();
                 });
 
-                self.$element.on('mouseleave', function () {
+                self.RS. element.on('mouseleave', function () {
                     self.resume();
                 });
 
@@ -288,13 +288,13 @@
 
             var self = this;
 
-            self.$element.addClass('pogoSlider--dir' + self.settings.buttonPosition);
+            self.RS. element.addClass('pogoSlider--dir' + self.settings.buttonPosition);
 
-            $('<button class="pogoSlider-dir-btn pogoSlider-dir-btn--prev"><i class="fa fa-angle-left"></i></button>').appendTo(self.$element).on('click', function () {
+            RS. ('<button class="pogoSlider-dir-btn pogoSlider-dir-btn--prev"><i class="fa fa-angle-left"></i></button>').appendTo(self.RS. element).on('click', function () {
                 self.prevSlide();
             });
 
-            $('<button class="pogoSlider-dir-btn pogoSlider-dir-btn--next"><i class="fa fa-angle-right"></i></button>').appendTo(self.$element).on('click', function () {
+            RS. ('<button class="pogoSlider-dir-btn pogoSlider-dir-btn--next"><i class="fa fa-angle-right"></i></button>').appendTo(self.RS. element).on('click', function () {
                 self.nextSlide();
             });
 
@@ -304,13 +304,13 @@
 
             var self = this;
 
-            self.$element.addClass('pogoSlider--nav' + self.settings.navPosition);
+            self.RS. element.addClass('pogoSlider--nav' + self.settings.navPosition);
 
-            var $navContainer = $('<ul class="pogoSlider-nav"></ul>').appendTo(self.$element);
+            var RS. navContainer = RS. ('<ul class="pogoSlider-nav"></ul>').appendTo(self.RS. element);
 
             for (var i = 0; i < self.slides.length; i++) {
-                $('<li data-num="' + i + '"><button class="pogoSlider-nav-btn"></button></li>').appendTo($navContainer).on('click', function () {
-                    self.toSlide($(this).data('num'));
+                RS. ('<li data-num="' + i + '"><button class="pogoSlider-nav-btn"></button></li>').appendTo(RS. navContainer).on('click', function () {
+                    self.toSlide(RS. (this).data('num'));
                 });
             }
 
@@ -367,22 +367,22 @@
             var scaleFactor = 1;
 
             if (this.scaledBy) {
-                scaleFactor = (this.$element.width() / this.settings.targetWidth) / this.scaledBy;
+                scaleFactor = (this.RS. element.width() / this.settings.targetWidth) / this.scaledBy;
             } else {
-                scaleFactor = this.$element.width() / this.settings.targetWidth;
+                scaleFactor = this.RS. element.width() / this.settings.targetWidth;
             }
 
-            this.scaledBy = this.$element.width() / this.settings.targetWidth;
+            this.scaledBy = this.RS. element.width() / this.settings.targetWidth;
 
-            this.$element.find('.pogoSlider-slide-element').each(function () {
+            this.RS. element.find('.pogoSlider-slide-element').each(function () {
 
                 var elementStyles = window.getComputedStyle(this);
                 var appliedProps = self.getAppliedProps(this);
                 var styleObj = {};
 
                 // store the oringal styles
-                if (!$.data(self, 'originalStyles')) {
-                    $.data(self, 'originalStyles', $(this).attr('style'));
+                if (!RS. .data(self, 'originalStyles')) {
+                    RS. .data(self, 'originalStyles', RS. (this).attr('style'));
                 }
 
                 for (var i = 0; i < appliedProps.length; i++) {
@@ -407,7 +407,7 @@
 
                 }
 
-                $(this).css(styleObj);
+                RS. (this).css(styleObj);
 
             });
 
@@ -422,10 +422,10 @@
             progressHtml += '<div class="pogoSlider-progressBar-duration"></div>';
             progressHtml += '</div>';
 
-            //this.$element.prepend(progressHtml);
+            //this.RS. element.prepend(progressHtml);
 
             for (var i = 0; i < this.slides.length; i++) {
-                this.slides[i].$element.prepend(progressHtml);
+                this.slides[i].RS. element.prepend(progressHtml);
             }
 
         },
@@ -456,14 +456,14 @@
                 clearTimeout(this.slideTimeoutId);
 
                 if (this.settings.displayProgess) {
-                    this.$element.find('.pogoSlider-progressBar-duration').stop(true);
+                    this.RS. element.find('.pogoSlider-progressBar-duration').stop(true);
                 }
 
                 this.slidePauseTime = new Date();
                 this.slideTimeRemaining = this.slideTimeRemaining - ((new Date()) - this.slideStartTime);
 
                 for (var i = 0; i < this.slides[this.currentSlideIndex].children.length; i++) {
-                    this.slides[this.currentSlideIndex].children[i].$element.precss('animation-play-state', 'paused');
+                    this.slides[this.currentSlideIndex].children[i].RS. element.precss('animation-play-state', 'paused');
                 }
 
                 if (this.settings.onSliderPause) {
@@ -483,14 +483,14 @@
                 this.slideStartTime = new Date();
 
                 for (var i = 0; i < this.slides[this.currentSlideIndex].children.length; i++) {
-                    this.slides[this.currentSlideIndex].children[i].$element.precss('animation-play-state', '');
+                    this.slides[this.currentSlideIndex].children[i].RS. element.precss('animation-play-state', '');
                 }
 
                 // only add the additonal pause if there is time remaining
                 if (this.slideTimeRemaining > 0 && !this.navigating) {
 
                     if (this.settings.displayProgess) {
-                        this.$element.find('.pogoSlider-progressBar-duration').animate({
+                        this.RS. element.find('.pogoSlider-progressBar-duration').animate({
                             'width': '100%'
                         }, this.slideTimeRemaining, 'linear');
                     }
@@ -571,7 +571,7 @@
 
             this.paused = true;
             clearTimeout(this.slideTimeoutId);
-            $.removeData(this.element, 'plugin_' + pluginName);
+            RS. .removeData(this.element, 'plugin_' + pluginName);
 
         },
 
@@ -635,7 +635,7 @@
         // private method called on slide start
         _onSlideStart: function (slideIndex) {
 
-            this.slides[slideIndex].$element.css('z-index', 1);
+            this.slides[slideIndex].RS. element.css('z-index', 1);
 
             if (this.settings.autoplay) {
                 // need to set them regardless of whether it is paused or not
@@ -643,7 +643,7 @@
                 this.slideTimeRemaining = this.slides[slideIndex].totalSlideDuration;
 
                 if (this.settings.displayProgess && !this.paused) {
-                    this.slides[slideIndex].$element.find('.pogoSlider-progressBar-duration').css('width', '0').animate({
+                    this.slides[slideIndex].RS. element.find('.pogoSlider-progressBar-duration').css('width', '0').animate({
                         'width': '100%'
                     }, this.slideTimeRemaining, 'linear');
                 }
@@ -657,14 +657,14 @@
             if (this.paused) {
 
                 for (var i = 0; i < this.slides[slideIndex].children.length; i++) {
-                    this.slides[slideIndex].children[i].$element.precss('animation-play-state', 'paused');
+                    this.slides[slideIndex].children[i].RS. element.precss('animation-play-state', 'paused');
                 }
 
             }
 
             if (this.settings.generateNav) {
-                this.$element.find('.pogoSlider-nav-btn').removeClass('pogoSlider-nav-btn--selected');
-                this.$element.find('.pogoSlider-nav-btn').eq(slideIndex).addClass('pogoSlider-nav-btn--selected');
+                this.RS. element.find('.pogoSlider-nav-btn').removeClass('pogoSlider-nav-btn--selected');
+                this.RS. element.find('.pogoSlider-nav-btn').eq(slideIndex).addClass('pogoSlider-nav-btn--selected');
             }
 
             if (this.settings.onSlideStart) {
@@ -681,7 +681,7 @@
 
             if (this.settings.autoplay) {
                 if (this.settings.displayProgess) {
-                    this.slides[slideIndex].$element.find('.pogoSlider-progressBar-duration').stop(true).css('width', '0');
+                    this.slides[slideIndex].RS. element.find('.pogoSlider-progressBar-duration').stop(true).css('width', '0');
                 }
             }
 
@@ -690,7 +690,7 @@
                 timeElapsed = this.slides[slideIndex].totalSlideDuration - this.slideTimeRemaining;
 
                 for (var i = 0; i < this.slides[slideIndex].children.length; i++) {
-                    this.slides[slideIndex].children[i].$element.precss('animation-play-state', '');
+                    this.slides[slideIndex].children[i].RS. element.precss('animation-play-state', '');
                 }
 
             } else {
@@ -719,7 +719,7 @@
 
                 var el = this.slides[slideIndex].children[i];
 
-                el.$element
+                el.RS. element
                     .precss({
                         '*opacity': 1,
                         'animation-duration': el.duration + 'ms',
@@ -738,7 +738,7 @@
 
                 var el = this.slides[slideIndex].children[i];
 
-                el.$element
+                el.RS. element
                     .precss('animation-delay', '')
                     .removeClass('pogoSlider-animation-' + el.transitionIn + 'In')
                     .addClass('pogoSlider-animation-' + el.transitionOut + 'Out');
@@ -749,11 +749,11 @@
         // ensure the slide are put back to their origninal state after they have transitioned out
         _slideCleanup: function (slideIndex, slideVisible) {
 
-            if (this.slides[slideIndex].$element.find('.pogoSlider-slide-slice').length > 0) {
+            if (this.slides[slideIndex].RS. element.find('.pogoSlider-slide-slice').length > 0) {
                 this._removeSlideSlices(slideIndex);
             }
 
-            this.slides[slideIndex].$element.attr('style', this.slides[slideIndex].$element.data('original-styles')).css('opacity', slideVisible ? '1' : '0');
+            this.slides[slideIndex].RS. element.attr('style', this.slides[slideIndex].RS. element.data('original-styles')).css('opacity', slideVisible ? '1' : '0');
 
         },
 
@@ -768,10 +768,10 @@
                 return style.replace(/(?:-webkit-)?(?:-ms-)?((?:transition)|(?:animation))[^;]+;/g, '');
             };
 
-            this.slides[slideIndex].$element.find('.pogoSlider-progressBar-duration').css('width', '0');
+            this.slides[slideIndex].RS. element.find('.pogoSlider-progressBar-duration').css('width', '0');
 
             for (var i = 0; i < this.slides[slideIndex].children.length; i++) {
-                this.slides[slideIndex].children[i].$element.removeClass(removePogoSlideElementClasses).attr('style', removePogoSlideElementStyles).css('opacity', 0);
+                this.slides[slideIndex].children[i].RS. element.removeClass(removePogoSlideElementClasses).attr('style', removePogoSlideElementStyles).css('opacity', 0);
             }
 
         },
@@ -783,8 +783,8 @@
             var sliceHeight = 100 / rows;
             var sliceInnerWidth = 100 * cols;
             var sliceInnerHeight = 100 * rows;
-            var $el = this.slides[slideIndex].$element;
-            var styleAttr = $el.attr('style');
+            var RS. el = this.slides[slideIndex].RS. element;
+            var styleAttr = RS. el.attr('style');
             var timeElapsed;
 
             if (this.paused) {
@@ -802,18 +802,18 @@
                     var animationDelay = (this.slides[slideIndex].children[i].startTime - timeElapsed) + 'ms';
 
                     // change the animation delay, to reflect the actual amount of time
-                    this.slides[slideIndex].children[i].$element.precss('animation-delay', animationDelay);
+                    this.slides[slideIndex].children[i].RS. element.precss('animation-delay', animationDelay);
 
                 }
 
             }
 
-            $el
+            RS. el
                 .children()
                 .wrapAll('<div class="pogoSlider-slide-slice" style="' + 'width:' + sliceWidth + '%;height:' + sliceHeight + '%;top:0%;left:0%;' + '"/>')
                 .wrapAll('<div class="pogoSlider-slide-slice-inner" style="' + styleAttr + 'width:' + sliceInnerWidth + '%;height:' + sliceInnerHeight + '%;top:0%;left:0%;' + '"/>');
 
-            $el.attr('style', function (i, style) {
+            RS. el.attr('style', function (i, style) {
                 return style.replace(/(?:background)[^;]+;/g, '');
             });
 
@@ -826,10 +826,10 @@
                 var sliceInnerPosStyles = 'width:' + sliceInnerWidth + '%;height:' + sliceInnerHeight + '%;top:-' + (100 * colNum) + '%;left:-' + (100 * rowNum) + '%;';
                 var sliceInnerBackgroundStyles = '';
                 if (this.settings.preserveTargetSize) {
-                    sliceInnerBackgroundStyles = 'background-size:' + this.$element.width() + 'px ' + parseFloat(this.$element.css('padding-bottom')) + 'px;';
+                    sliceInnerBackgroundStyles = 'background-size:' + this.RS. element.width() + 'px ' + parseFloat(this.RS. element.css('padding-bottom')) + 'px;';
                 }
 
-                var el = $el.find('.pogoSlider-slide-slice')
+                var el = RS. el.find('.pogoSlider-slide-slice')
                     .last();
                 if (j != 0) {
                     el = el.clone(true, true)
@@ -847,15 +847,15 @@
         _removeSlideSlices: function (slideIndex) {
 
             var self = this;
-            var $el = self.slides[slideIndex].$element;
+            var RS. el = self.slides[slideIndex].RS. element;
 
-            $el.attr('style', $el.data('original-styles'));
+            RS. el.attr('style', RS. el.data('original-styles'));
 
             // remove all slices except the first slide (which was the one we wrapped)
-            $el.find('.pogoSlider-slide-slice').not(':first').remove();
+            RS. el.find('.pogoSlider-slide-slice').not(':first').remove();
             // unwrap the remaining slides (to preserve event handler etc.)
-            $el.find('.pogoSlider-slide-slice-inner').children().unwrap();
-            $el.find('.pogoSlider-slide-slice').children().unwrap();
+            RS. el.find('.pogoSlider-slide-slice-inner').children().unwrap();
+            RS. el.find('.pogoSlider-slide-slice').children().unwrap();
 
         },
 
@@ -886,14 +886,14 @@
                 var currentSlide = this.slides[currentSlideIndex];
 
                 // carry out transiton on previous slide and then clean up
-                this.slides[prevSlideIndex].$element
+                this.slides[prevSlideIndex].RS. element
                     .precss({
                         '*opacity': '0',
                         'transition-duration': currentSlide.duration + 'ms'
                     });
 
                 // transiton in the current slide
-                currentSlide.$element
+                currentSlide.RS. element
                     .precss({
                         '*opacity': '1',
                         'transition-duration': currentSlide.duration + 'ms'
@@ -942,11 +942,11 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss('animation-duration', currentSlide.duration + 'ms')
                     .addClass('pogoSlider-animation-leftOut');
 
-                currentSlide.$element
+                currentSlide.RS. element
                     .precss({
                         '*opacity': '1',
                         'animation-duration': currentSlide.duration + 'ms'
@@ -954,8 +954,8 @@
                     .addClass('pogoSlider-animation-leftIn');
 
                 return function () {
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-leftOut');
-                    currentSlide.$element.attr('style', currentSlide.$element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-leftIn');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-leftOut');
+                    currentSlide.RS. element.attr('style', currentSlide.RS. element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-leftIn');
                 };
 
             },
@@ -965,11 +965,11 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss('animation-duration', currentSlide.duration + 'ms')
                     .addClass('pogoSlider-animation-rightOut');
 
-                currentSlide.$element
+                currentSlide.RS. element
                     .precss({
                         '*opacity': '1',
                         'animation-duration': currentSlide.duration + 'ms'
@@ -977,8 +977,8 @@
                     .addClass('pogoSlider-animation-rightIn');
 
                 return function () {
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-rightOut');
-                    currentSlide.$element.attr('style', currentSlide.$element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-rightIn');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-rightOut');
+                    currentSlide.RS. element.attr('style', currentSlide.RS. element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-rightIn');
                 };
 
             },
@@ -988,11 +988,11 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss('animation-duration', currentSlide.duration + 'ms')
                     .addClass('pogoSlider-animation-upOut');
 
-                currentSlide.$element
+                currentSlide.RS. element
                     .precss({
                         '*opacity': '1',
                         'animation-duration': currentSlide.duration + 'ms'
@@ -1000,8 +1000,8 @@
                     .addClass('pogoSlider-animation-upIn');
 
                 return function () {
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-upOut');
-                    currentSlide.$element.attr('style', currentSlide.$element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-upIn');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-upOut');
+                    currentSlide.RS. element.attr('style', currentSlide.RS. element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-upIn');
 
                 };
 
@@ -1012,11 +1012,11 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss('animation-duration', currentSlide.duration + 'ms')
                     .addClass('pogoSlider-animation-downOut');
 
-                currentSlide.$element
+                currentSlide.RS. element
                     .precss({
                         '*opacity': '1',
                         'animation-duration': currentSlide.duration + 'ms'
@@ -1024,8 +1024,8 @@
                     .addClass('pogoSlider-animation-downIn');
 
                 return function () {
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-downOut');
-                    currentSlide.$element.attr('style', currentSlide.$element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-downIn');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-downOut');
+                    currentSlide.RS. element.attr('style', currentSlide.RS. element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-downIn');
 
                 };
 
@@ -1036,20 +1036,20 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss({
                         '*z-index': self.settings.baseZindex + 1,
                         'animation-duration': currentSlide.duration + 'ms'
                     })
                     .addClass('pogoSlider-animation-leftOut');
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 return function () {
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-leftOut');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-leftOut');
                 };
 
             },
@@ -1059,20 +1059,20 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss({
                         '*z-index': self.settings.baseZindex + 1,
                         'animation-duration': currentSlide.duration + 'ms'
                     })
                     .addClass('pogoSlider-animation-rightOut');
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 return function () {
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-rightOut');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-rightOut');
                 };
 
             },
@@ -1081,7 +1081,7 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                currentSlide.$element
+                currentSlide.RS. element
                     .precss({
                         '*opacity': '1',
                         '*z-index': this.settings.baseZindex + 1,
@@ -1090,7 +1090,7 @@
                     .addClass('pogoSlider-animation-leftIn');
 
                 return function () {
-                    currentSlide.$element.attr('style', currentSlide.$element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-leftIn');
+                    currentSlide.RS. element.attr('style', currentSlide.RS. element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-leftIn');
                 };
 
             },
@@ -1099,7 +1099,7 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                currentSlide.$element
+                currentSlide.RS. element
                     .precss({
                         '*opacity': '1',
                         '*z-index': this.settings.baseZindex + 1,
@@ -1108,7 +1108,7 @@
                     .addClass('pogoSlider-animation-rightIn');
 
                 return function () {
-                    currentSlide.$element.attr('style', currentSlide.$element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-rightIn');
+                    currentSlide.RS. element.attr('style', currentSlide.RS. element.data('original-styles')).css('opacity', '1').removeClass('pogoSlider-animation-rightIn');
                 };
 
             },
@@ -1118,23 +1118,23 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.$element.css('overflow', 'visible');
+                self.RS. element.css('overflow', 'visible');
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss({
                         '*z-index': self.settings.baseZindex + 1,
                         'animation-duration': currentSlide.duration + 'ms'
                     })
                     .addClass('pogoSlider-animation-expandReveal');
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 return function () {
-                    self.$element.css('overflow', '');
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-expandReveal');
+                    self.RS. element.css('overflow', '');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-expandReveal');
                 };
 
             },
@@ -1144,20 +1144,20 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element
+                self.slides[prevSlideIndex].RS. element
                     .precss({
                         '*z-index': self.settings.baseZindex + 1,
                         'animation-duration': currentSlide.duration + 'ms'
                     })
                     .addClass('pogoSlider-animation-shrinkReveal');
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 return function () {
-                    self.slides[prevSlideIndex].$element.removeClass('pogoSlider-animation-shrinkReveal');
+                    self.slides[prevSlideIndex].RS. element.removeClass('pogoSlider-animation-shrinkReveal');
                 };
 
             },
@@ -1168,20 +1168,20 @@
                 var currentSlide = self.slides[currentSlideIndex];
 
                 // init current slide and prev slides position
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
-                currentSlide.$element.css({
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 self._createSlideSlices(prevSlideIndex, 1, 2);
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                $slices.precss('animation-duration', currentSlide.duration + 'ms');
+                RS. slices.precss('animation-duration', currentSlide.duration + 'ms');
 
-                $slices.eq(0).addClass('pogoSlider-animation-leftOut');
-                $slices.eq(1).addClass('pogoSlider-animation-rightOut');
+                RS. slices.eq(0).addClass('pogoSlider-animation-leftOut');
+                RS. slices.eq(1).addClass('pogoSlider-animation-rightOut');
 
             },
 
@@ -1191,20 +1191,20 @@
                 var currentSlide = self.slides[currentSlideIndex];
 
                 // init current slide and prev slides position
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
-                currentSlide.$element.css({
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 self._createSlideSlices(prevSlideIndex, 2, 1);
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                $slices.precss('animation-duration', currentSlide.duration + 'ms');
+                RS. slices.precss('animation-duration', currentSlide.duration + 'ms');
 
-                $slices.eq(0).addClass('pogoSlider-animation-upOut');
-                $slices.eq(1).addClass('pogoSlider-animation-downOut');
+                RS. slices.eq(0).addClass('pogoSlider-animation-upOut');
+                RS. slices.eq(1).addClass('pogoSlider-animation-downOut');
 
             },
 
@@ -1214,27 +1214,27 @@
                 var currentSlide = self.slides[currentSlideIndex];
 
                 // init current slide and prev slides position
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
-                currentSlide.$element.css({
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
-                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.$element.width() / 100));
+                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.RS. element.width() / 100));
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                $slices.precss('animation-duration', currentSlide.duration + 'ms');
+                RS. slices.precss('animation-duration', currentSlide.duration + 'ms');
 
-                //var transitionDelay = currentSlide.duration / ($slices.length + 1);
+                //var transitionDelay = currentSlide.duration / (RS. slices.length + 1);
                 //var transitionDuration = transitionDelay * 2;
 
-                $slices.each(function (index) {
+                RS. slices.each(function (index) {
 
                     if (index % 2 === 0) {
-                        $(this).addClass('pogoSlider-animation-upOut');
+                        RS. (this).addClass('pogoSlider-animation-upOut');
                     } else {
-                        $(this).addClass('pogoSlider-animation-downOut');
+                        RS. (this).addClass('pogoSlider-animation-downOut');
                     }
 
                 });
@@ -1259,32 +1259,32 @@
                 var currentSlide = self.slides[currentSlideIndex];
 
                 // init current slide and prev slides position
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
-                currentSlide.$element.css({
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
-                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.$element.width() / 100));
+                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.RS. element.width() / 100));
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                var animationDelay = currentSlide.duration / ($slices.length + 1);
+                var animationDelay = currentSlide.duration / (RS. slices.length + 1);
                 var animationDuration = animationDelay * 2;
 
-                $slices.precss('animation-duration', animationDuration + 'ms');
+                RS. slices.precss('animation-duration', animationDuration + 'ms');
 
-                $slices.each(function (index) {
+                RS. slices.each(function (index) {
 
                     if (direction === 'down') {
 
-                        $(this)
+                        RS. (this)
                             .addClass('pogoSlider-animation-downOut')
                             .precss('animation-delay', animationDelay * index + 'ms');
 
                     } else {
 
-                        $(this)
+                        RS. (this)
                             .addClass('pogoSlider-animation-upOut')
                             .precss('animation-delay', animationDelay * index + 'ms');
 
@@ -1301,31 +1301,31 @@
 
                 var height = 0;
                 if (self.settings.preserveTargetSize) {
-                    height = parseFloat(self.$element.css('padding-bottom'));
+                    height = parseFloat(self.RS. element.css('padding-bottom'));
                 } else {
-                    height = self.$element.height();
+                    height = self.RS. element.height();
                 }
                 var numRows = Math.round(height / 100); // 100 is the target square size
-                var numCols = Math.round(self.$element.width() / 100);
+                var numCols = Math.round(self.RS. element.width() / 100);
 
                 // init current slide and prev slides position
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
-                currentSlide.$element.css({
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 var randArr = self._generateARandomArray(numRows * numCols);
                 self._createSlideSlices(prevSlideIndex, numRows, numCols);
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                var animationDelay = currentSlide.duration / ($slices.length + 1);
+                var animationDelay = currentSlide.duration / (RS. slices.length + 1);
                 var animationDuration = animationDelay * 2;
 
-                $slices.precss('animation-duration', animationDuration + 'ms');
+                RS. slices.precss('animation-duration', animationDuration + 'ms');
 
-                for (var i = 0; i < $slices.length; i++) {
-                    $slices.eq(randArr.pop())
+                for (var i = 0; i < RS. slices.length; i++) {
+                    RS. slices.eq(randArr.pop())
                         .precss('animation-delay', (animationDelay * i) + 'ms')
                         .addClass('pogoSlider-animation-blocksReveal');
                 }
@@ -1357,47 +1357,47 @@
                 var prevSlide = self.slides[prevSlideIndex];
 
                 // init current slide and prev slides position
-                self.$element.css('overflow', 'visible');
-                prevSlide.$element.css({
+                self.RS. element.css('overflow', 'visible');
+                prevSlide.RS. element.css({
                     'overflow': 'visible',
                     'z-index': self.settings.baseZindex
                 });
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'overflow': 'visible',
                     'z-index': self.settings.baseZindex + 1
                 });
 
                 self._createSlideSlices(prevSlideIndex, 1, 2);
-                var $prevSlideSlices = prevSlide.$element.find('.pogoSlider-slide-slice');
+                var RS. prevSlideSlices = prevSlide.RS. element.find('.pogoSlider-slide-slice');
 
                 self._createSlideSlices(currentSlideIndex, 1, 2);
-                var $currentSlideSlices = self.slides[currentSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. currentSlideSlices = self.slides[currentSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                var $bottomLeft = $prevSlideSlices.eq(0);
-                //var $bottomRight = $prevSlideSlices.eq(1);
-                var $topLeft = $currentSlideSlices.eq(0);
-                var $topRight = $currentSlideSlices.eq(1);
+                var RS. bottomLeft = RS. prevSlideSlices.eq(0);
+                //var RS. bottomRight = RS. prevSlideSlices.eq(1);
+                var RS. topLeft = RS. currentSlideSlices.eq(0);
+                var RS. topRight = RS. currentSlideSlices.eq(1);
 
-                currentSlide.$element.prepend($bottomLeft.detach());
-                prevSlide.$element.prepend($topLeft.detach());
+                currentSlide.RS. element.prepend(RS. bottomLeft.detach());
+                prevSlide.RS. element.prepend(RS. topLeft.detach());
 
-                $bottomLeft
+                RS. bottomLeft
                     .addClass('pogoSlider-animation-foldInRight')
                     .precss('animation-duration', currentSlide.duration + 'ms');
 
-                $topRight
+                RS. topRight
                     .addClass('pogoSlider-animation-foldOutRight')
                     .precss('animation-duration', currentSlide.duration + 'ms');
 
                 return function () {
 
                     // restore original overflow
-                    self.$element.css('overflow', '');
+                    self.RS. element.css('overflow', '');
 
                     // since the original element has been move, restore it to the original position
-                    currentSlide.$element.prepend($topLeft.detach());
-                    prevSlide.$element.prepend($bottomLeft.detach());
+                    currentSlide.RS. element.prepend(RS. topLeft.detach());
+                    prevSlide.RS. element.prepend(RS. bottomLeft.detach());
 
                     // need to manually cleanup the current slide
                     self._slideCleanup(currentSlideIndex, true);
@@ -1413,43 +1413,43 @@
                 var prevSlide = self.slides[prevSlideIndex];
 
                 // init current slide and prev slides position
-                self.$element.css('overflow', 'visible');
-                prevSlide.$element.css({
+                self.RS. element.css('overflow', 'visible');
+                prevSlide.RS. element.css({
                     'overflow': 'visible',
                     'z-index': self.settings.baseZindex
                 });
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'overflow': 'visible',
                     'z-index': self.settings.baseZindex + 1
                 });
 
                 self._createSlideSlices(prevSlideIndex, 1, 2);
-                var $prevSlideSlices = prevSlide.$element.find('.pogoSlider-slide-slice');
+                var RS. prevSlideSlices = prevSlide.RS. element.find('.pogoSlider-slide-slice');
 
                 self._createSlideSlices(currentSlideIndex, 1, 2);
-                var $currentSlideSlices = self.slides[currentSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. currentSlideSlices = self.slides[currentSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                //var $bottomLeft = $prevSlideSlices.eq(0);
-                var $bottomRight = $prevSlideSlices.eq(1);
-                var $topLeft = $currentSlideSlices.eq(0);
-                var $topRight = $currentSlideSlices.eq(1);
+                //var RS. bottomLeft = RS. prevSlideSlices.eq(0);
+                var RS. bottomRight = RS. prevSlideSlices.eq(1);
+                var RS. topLeft = RS. currentSlideSlices.eq(0);
+                var RS. topRight = RS. currentSlideSlices.eq(1);
 
-                currentSlide.$element.append($bottomRight.detach());
-                prevSlide.$element.append($topRight.detach());
+                currentSlide.RS. element.append(RS. bottomRight.detach());
+                prevSlide.RS. element.append(RS. topRight.detach());
 
-                $bottomRight
+                RS. bottomRight
                     .addClass('pogoSlider-animation-foldInLeft')
                     .precss('animation-duration', currentSlide.duration + 'ms');
 
-                $topLeft
+                RS. topLeft
                     .addClass('pogoSlider-animation-foldOutLeft')
                     .precss('animation-duration', currentSlide.duration + 'ms');
 
                 return function () {
 
                     // restore original overflow
-                    self.$element.css('overflow', '');
+                    self.RS. element.css('overflow', '');
 
                     // need to manually cleanup the current slide
                     self._slideCleanup(currentSlideIndex, true);
@@ -1467,12 +1467,12 @@
                 var currentSlide = this.slides[currentSlideIndex];
 
                 // carry out transiton on previous slide and then clean up
-                this.slides[prevSlideIndex].$element.animate({
+                this.slides[prevSlideIndex].RS. element.animate({
                     opacity: 0
                 }, currentSlide.duration);
 
                 // transiton in the current slide
-                currentSlide.$element.animate({
+                currentSlide.RS. element.animate({
                     opacity: 1
                 }, currentSlide.duration);
 
@@ -1518,11 +1518,11 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element.animate({
+                this.slides[prevSlideIndex].RS. element.animate({
                     left: '-100%'
                 }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     left: '100%',
                     'opacity': 1
                 }).animate({
@@ -1535,11 +1535,11 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element.animate({
+                this.slides[prevSlideIndex].RS. element.animate({
                     left: '100%'
                 }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     left: '-100%',
                     'opacity': 1
                 }).animate({
@@ -1552,11 +1552,11 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element.animate({
+                this.slides[prevSlideIndex].RS. element.animate({
                     top: '-100%'
                 }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     top: '100%',
                     'opacity': 1
                 }).animate({
@@ -1569,11 +1569,11 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element.animate({
+                this.slides[prevSlideIndex].RS. element.animate({
                     top: '100%'
                 }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     top: '-100%',
                     'opacity': 1
                 }).animate({
@@ -1586,11 +1586,11 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element.css('z-index', this.settings.baseZindex + 1).animate({
+                this.slides[prevSlideIndex].RS. element.css('z-index', this.settings.baseZindex + 1).animate({
                     left: '-100%'
                 }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': this.settings.baseZindex
                 });
@@ -1601,11 +1601,11 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element.css('z-index', this.settings.baseZindex + 1).animate({
+                this.slides[prevSlideIndex].RS. element.css('z-index', this.settings.baseZindex + 1).animate({
                     left: '100%'
                 }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': this.settings.baseZindex
                 });
@@ -1616,7 +1616,7 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': this.settings.baseZindex,
                     'left': '100%'
@@ -1630,7 +1630,7 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': this.settings.baseZindex,
                     'right': '100%'
@@ -1644,7 +1644,7 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element
+                this.slides[prevSlideIndex].RS. element
                     .css('z-index', this.settings.baseZindex + 1)
                     .animate({
                         width: '120%',
@@ -1654,7 +1654,7 @@
                         opacity: 0
                     }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': this.settings.baseZindex
                 });
@@ -1665,7 +1665,7 @@
 
                 var currentSlide = this.slides[currentSlideIndex];
 
-                this.slides[prevSlideIndex].$element
+                this.slides[prevSlideIndex].RS. element
                     .css('z-index', this.settings.baseZindex + 1)
                     .animate({
                         width: '50%',
@@ -1675,7 +1675,7 @@
                         opacity: 0
                     }, currentSlide.duration);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': this.settings.baseZindex
                 });
@@ -1687,22 +1687,22 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 self._createSlideSlices(prevSlideIndex, 1, 2);
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                $slices.eq(0).animate({
+                RS. slices.eq(0).animate({
                     'left': '-50%'
                 }, currentSlide.duration);
 
-                $slices.eq(1).animate({
+                RS. slices.eq(1).animate({
                     'left': '100%'
                 }, currentSlide.duration);
 
@@ -1713,22 +1713,22 @@
                 var self = this;
                 var currentSlide = self.slides[currentSlideIndex];
 
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
 
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
                 self._createSlideSlices(prevSlideIndex, 2, 1);
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                $slices.eq(0).animate({
+                RS. slices.eq(0).animate({
                     'top': '-50%'
                 }, currentSlide.duration);
 
-                $slices.eq(1).animate({
+                RS. slices.eq(1).animate({
                     'top': '100%'
                 }, currentSlide.duration);
 
@@ -1740,28 +1740,28 @@
                 var currentSlide = self.slides[currentSlideIndex];
 
                 // init prev slide
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
                 // init current slide
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
-                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.$element.width() / 100));
+                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.RS. element.width() / 100));
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                var transitionDelay = currentSlide.duration / ($slices.length + 1);
+                var transitionDelay = currentSlide.duration / (RS. slices.length + 1);
                 var transitionDuration = transitionDelay * 2;
 
-                $slices.each(function (index) {
+                RS. slices.each(function (index) {
 
                     if (index % 2 === 0) {
-                        $(this).delay(transitionDelay * index).animate({
+                        RS. (this).delay(transitionDelay * index).animate({
                             'top': '100%'
                         }, transitionDuration);
                     } else {
-                        $(this).delay(transitionDelay * index).animate({
+                        RS. (this).delay(transitionDelay * index).animate({
                             'top': '-100%'
                         }, transitionDuration);
                     }
@@ -1788,28 +1788,28 @@
                 var currentSlide = self.slides[currentSlideIndex];
 
                 // init prev slide
-                self.slides[prevSlideIndex].$element.css('z-index', self.settings.baseZindex + 1);
+                self.slides[prevSlideIndex].RS. element.css('z-index', self.settings.baseZindex + 1);
                 // init current slide
-                currentSlide.$element.css({
+                currentSlide.RS. element.css({
                     'opacity': 1,
                     'z-index': self.settings.baseZindex
                 });
 
-                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.$element.width() / 100));
+                self._createSlideSlices(prevSlideIndex, 1, Math.round(self.RS. element.width() / 100));
 
-                var $slices = self.slides[prevSlideIndex].$element.find('.pogoSlider-slide-slice');
+                var RS. slices = self.slides[prevSlideIndex].RS. element.find('.pogoSlider-slide-slice');
 
-                var transitionDelay = currentSlide.duration / ($slices.length + 1);
+                var transitionDelay = currentSlide.duration / (RS. slices.length + 1);
                 var transitionDuration = transitionDelay * 2;
 
-                $slices.each(function (index) {
+                RS. slices.each(function (index) {
 
                     if (direction === 'down') {
-                        $(this).delay(transitionDelay * index).animate({
+                        RS. (this).delay(transitionDelay * index).animate({
                             'top': '100%'
                         }, transitionDuration);
                     } else {
-                        $(this).delay(transitionDelay * index).animate({
+                        RS. (this).delay(transitionDelay * index).animate({
                             'top': '-100%'
                         }, transitionDuration);
                     }
@@ -1822,11 +1822,11 @@
 
     };
 
-    $.fn[pluginName] = function (options) {
+    RS. .fn[pluginName] = function (options) {
 
         this.each(function () {
-            if (!$.data(this, 'plugin_' + pluginName)) {
-                $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+            if (!RS. .data(this, 'plugin_' + pluginName)) {
+                RS. .data(this, 'plugin_' + pluginName, new Plugin(this, options));
             }
         });
 

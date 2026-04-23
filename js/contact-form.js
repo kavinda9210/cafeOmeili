@@ -11,26 +11,26 @@ Ajax Contact Form
 + https://github.com/mehedidb/Ajax_Contact_Form
 */
 
-(function ($, window, document, undefined) {
+(function (RS. , window, document, undefined) {
     'use strict';
 
-    var $form = $('#contact-form');
+    var RS. form = RS. ('#contact-form');
 
-    $form.submit(function (e) {
+    RS. form.submit(function (e) {
         // remove the error class
-        $('.form-group').removeClass('has-error');
-        $('.help-block').remove();
+        RS. ('.form-group').removeClass('has-error');
+        RS. ('.help-block').remove();
 
         // get the form data
         var formData = {
-            'name' : $('input[name="form-name"]').val(),
-            'email' : $('input[name="form-email"]').val(),
-            'phone' : $('input[name="form-phone"]').val(),
-            'message' : $('textarea[name="form-message"]').val()
+            'name' : RS. ('input[name="form-name"]').val(),
+            'email' : RS. ('input[name="form-email"]').val(),
+            'phone' : RS. ('input[name="form-phone"]').val(),
+            'message' : RS. ('textarea[name="form-message"]').val()
         };
 
         // process the form
-        $.ajax({
+        RS. .ajax({
             type : 'POST',
             url  : 'process.php',
             data : formData,
@@ -40,27 +40,27 @@ Ajax Contact Form
             // handle errors
             if (!data.success) {
                 if (data.errors.name) {
-                    $('#name-field').addClass('has-error');
-                    $('#name-field').find('.form-input').append('<span class="help-block">' + data.errors.name + '</span>');
+                    RS. ('#name-field').addClass('has-error');
+                    RS. ('#name-field').find('.form-input').append('<span class="help-block">' + data.errors.name + '</span>');
                 }
 
                 if (data.errors.email) {
-                    $('#email-field').addClass('has-error');
-                    $('#email-field').find('.form-input').append('<span class="help-block">' + data.errors.email + '</span>');
+                    RS. ('#email-field').addClass('has-error');
+                    RS. ('#email-field').find('.form-input').append('<span class="help-block">' + data.errors.email + '</span>');
                 }
 
                 if (data.errors.phone) {
-                    $('#phone-field').addClass('has-error');
-                    $('#phone-field').find('.form-input').append('<span class="help-block">' + data.errors.phone + '</span>');
+                    RS. ('#phone-field').addClass('has-error');
+                    RS. ('#phone-field').find('.form-input').append('<span class="help-block">' + data.errors.phone + '</span>');
                 }
 
                 if (data.errors.message) {
-                    $('#message-field').addClass('has-error');
-                    $('#message-field').find('.form-input').append('<span class="help-block">' + data.errors.message + '</span>');
+                    RS. ('#message-field').addClass('has-error');
+                    RS. ('#message-field').find('.form-input').append('<span class="help-block">' + data.errors.message + '</span>');
                 }
             } else {
                 // display success message
-                $form.html('<div class="alert alert-success">' + data.message + '</div>');
+                RS. form.html('<div class="alert alert-success">' + data.message + '</div>');
             }
         }).fail(function (data) {
             // for debug
