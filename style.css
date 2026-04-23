@@ -1440,6 +1440,17 @@ a.about-video-button:hover {
     color: #c1934c;
 }
 
+.single-promotions .promotions-img {
+    width: 100%;
+    height: auto; /* Remove fixed height */
+    overflow: hidden;
+}
+
+.single-promotions .promotions-img img {
+    width: 100%;
+    height: auto;
+}
+
 
 /*-----------------------------
     12.3 MENU AREA
