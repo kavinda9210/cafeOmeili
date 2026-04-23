@@ -2818,3 +2818,43 @@ ul.blog-instagram-feed-widget li {
     animation: fadeInScale 0.4s ease forwards;
 }
 
+/* Menu Filtering Styles */
+#menu .mix {
+    display: block;
+    transition: all 0.3s ease;
+}
+
+#menu .filter {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#menu .filter:hover {
+    background: #1e1e1f;
+    color: #fff;
+}
+
+#menu .filter.active {
+    background: #1e1e1f;
+    color: #fff;
+}
+
+#menu .food-menu-list {
+    min-height: 400px;
+}
+
+/* Animation for filtered items */
+#menu .mix {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
