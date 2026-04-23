@@ -1,10 +1,10 @@
-jQuery(document).on('ready', function (RS. ) {
+jQuery(document).on('ready', function ($) {
     "use strict";
 
     /*--------------------------
         SCROLLSPY ACTIVE
     ---------------------------*/
-    RS. ('body').scrollspy({
+    $('body').scrollspy({
         target: '.bs-example-js-navbar-scrollspy',
         offset: 50
     });
@@ -12,7 +12,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*--------------------------
         STICKY MAINMENU
     ---------------------------*/
-    RS. ("#mainmenu-area").sticky({
+    $("#mainmenu-area").sticky({
         topSpacing: 0
     });
 
@@ -20,7 +20,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*-----------------------------
         SLIDER ACTIVE
     ------------------------------*/
-    var mySlider = RS. ('.pogoSlider').pogoSlider({
+    var mySlider = $('.pogoSlider').pogoSlider({
         pauseOnHover: false
     }).data('plugin_pogoSlider');
 
@@ -28,10 +28,10 @@ jQuery(document).on('ready', function (RS. ) {
     /*----------------------------
         OPEN SEARCH FORM
     ----------------------------*/
-    var RS. searchForm = RS. ('.search-form');
-    var RS. searchFormTrigger = RS. ('.search-form-trigger');
-    var RS. formOverlay = RS. ('.search-form-overlay');
-    RS. searchFormTrigger.on('click', function (event) {
+    var $searchForm = $('.search-form');
+    var $searchFormTrigger = $('.search-form-trigger');
+    var $formOverlay = $('.search-form-overlay');
+    $searchFormTrigger.on('click', function (event) {
         event.preventDefault();
         toggleSearch();
     });
@@ -39,14 +39,14 @@ jQuery(document).on('ready', function (RS. ) {
     function toggleSearch(type) {
         if (type === "close") {
             //close serach 
-            RS. searchForm.removeClass('is-visible');
-            RS. searchFormTrigger.removeClass('search-is-visible');
+            $searchForm.removeClass('is-visible');
+            $searchFormTrigger.removeClass('search-is-visible');
         } else {
             //toggle search visibility
-            RS. searchForm.toggleClass('is-visible');
-            RS. searchFormTrigger.toggleClass('search-is-visible');
-            if (RS. searchForm.hasClass('is-visible')) RS. searchForm.find('input[type="search"]').focus();
-            RS. searchForm.hasClass('is-visible') ? RS. formOverlay.addClass('is-visible') : RS. formOverlay.removeClass('is-visible');
+            $searchForm.toggleClass('is-visible');
+            $searchFormTrigger.toggleClass('search-is-visible');
+            if ($searchForm.hasClass('is-visible')) $searchForm.find('input[type="search"]').focus();
+            $searchForm.hasClass('is-visible') ? $formOverlay.addClass('is-visible') : $formOverlay.removeClass('is-visible');
         }
     }
 
@@ -55,14 +55,14 @@ jQuery(document).on('ready', function (RS. ) {
     ----------------------------------*/
     function doneResizing() {
         if (Modernizr.mq('screen and (max-width:991px)')) {
-            RS. ('.at-drop-down').on('click', function (e) {
+            $('.at-drop-down').on('click', function (e) {
                 e.preventDefault();
-                RS. (this).next(RS. ('.sub-menu')).slideToggle();
+                $(this).next($('.sub-menu')).slideToggle();
             });
         }
     }
     var id;
-    RS. (window).resize(function () {
+    $(window).resize(function () {
         clearTimeout(id);
         id = setTimeout(doneResizing, 0);
     });
@@ -72,7 +72,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*------------------------------
         TIME PICKER ACTIVE
     -------------------------------*/
-    var input = RS. ('#time,#reservation_time').clockpicker({
+    var input = $('#time,#reservation_time').clockpicker({
         placement: 'bottom',
         align: 'left',
         autoclose: true,
@@ -83,7 +83,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*------------------------------
         ABOUT VIDEO POPUP
     --------------------------------*/
-    RS. ('.about-video-button,.blog-video-button').magnificPopup({
+    $('.about-video-button,.blog-video-button').magnificPopup({
         disableOn: 700,
         type: 'iframe',
         mainClass: 'mfp-fade',
@@ -95,7 +95,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*------------------------------
         MENU IMAGE POPUP
     -------------------------------*/
-    RS. ('.menu-popup').magnificPopup({
+    $('.menu-popup').magnificPopup({
         type: 'image',
         removalDelay: 500, //delay removal by X to allow out-animation
         callbacks: {
@@ -113,11 +113,11 @@ jQuery(document).on('ready', function (RS. ) {
     /*---------------------------
         SMOOTH SCROLL
     -----------------------------*/
-    RS. ('a.scrolltotop, .slider-area h3 a, .navbar-header a, ul#nav a').on('click', function (event) {
-        var id = RS. (this).attr("href");
+    $('a.scrolltotop, .slider-area h3 a, .navbar-header a, ul#nav a').on('click', function (event) {
+        var id = $(this).attr("href");
         var offset = 40;
-        var target = RS. (id).offset().top - offset;
-        RS. ('html, body').animate({
+        var target = $(id).offset().top - offset;
+        $('html, body').animate({
             scrollTop: target
         }, 1500, "easeInOutExpo");
         event.preventDefault();
@@ -127,12 +127,12 @@ jQuery(document).on('ready', function (RS. ) {
     /*----------------------------
         SCROLL TO TOP
     ------------------------------*/
-    RS. (window).on("scroll",function () {
-        var totalHeight = RS. (window).scrollTop();
+    $(window).on("scroll",function () {
+        var totalHeight = $(window).scrollTop();
         if (totalHeight > 300) {
-            RS. (".scrolltotop").fadeIn();
+            $(".scrolltotop").fadeIn();
         } else {
-            RS. (".scrolltotop").fadeOut();
+            $(".scrolltotop").fadeOut();
         }
     });
 
@@ -140,13 +140,13 @@ jQuery(document).on('ready', function (RS. ) {
     /*---------------------------
         MENU LIST MIXITUP FILTERING
     ----------------------------*/
-    RS. ('.food-menu-list').mixItUp();
+    $('.food-menu-list').mixItUp();
 
 
     /*---------------------------
         SCREENSHOT SLIDER
     -----------------------------*/
-    RS. ('.team-slider').owlCarousel({
+    $('.team-slider').owlCarousel({
         merge: true,
         video: true,
         items: 1,
@@ -175,7 +175,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*---------------------------
         TESTMONIAL SLIDER
     -----------------------------*/
-    RS. ('.testmonial-slider').owlCarousel({
+    $('.testmonial-slider').owlCarousel({
         merge: true,
         video: true,
         items: 1,
@@ -204,7 +204,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*---------------------------
         BLOG POST IMAGE SLIDER
     -----------------------------*/
-    RS. ('.blog-image-sldie').owlCarousel({
+    $('.blog-image-sldie').owlCarousel({
         merge: true,
         video: true,
         items: 1,
@@ -235,7 +235,7 @@ jQuery(document).on('ready', function (RS. ) {
     /*---------------------------
         MENU DISCOUNT SLIDER
     -----------------------------*/
-    RS. ('.menu-discount-offer').owlCarousel({
+    $('.menu-discount-offer').owlCarousel({
         merge: true,
         video: true,
         items: 1,
@@ -275,12 +275,12 @@ jQuery(document).on('ready', function (RS. ) {
         clientID: '4dd19c1f5c7745a2bca7b4b3524124d0'
     }
 
-    RS. ('.instagram-feed').spectragram('getUserFeed', {
+    $('.instagram-feed').spectragram('getUserFeed', {
         query: 'adrianengine', //this gets adrianengine's photo feed
         size: 'big',
         max: 5
     });
-    RS. ('.blog-instagram-feed-widget').spectragram('getUserFeed', {
+    $('.blog-instagram-feed-widget').spectragram('getUserFeed', {
         query: 'adrianengine', //this gets adrianengine's photo feed
         size: 'small',
         max: 6
@@ -294,5 +294,5 @@ jQuery(window).on('load', function () {
     /*--------------------------
         PRE LOADER
     ----------------------------*/
-    RS. (".preeloader").fadeOut(1000);
+    $(".preeloader").fadeOut(1000);
 });
