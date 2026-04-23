@@ -1268,9 +1268,7 @@ ul.instagram-feed li img {
 }
 
 .footer-copyright {
-    letter-spacing: 1px;
-    padding: 40px 0;
-    text-align: right;
+    text-align: center;
 }
 
 .footer-copyright p {
